@@ -1,14 +1,10 @@
 #!/usr/bin/env bash
 
-# Just change the repository name
-REPOSITORY=python36-postgres
-ECR=244784345394.dkr.ecr.us-east-2.amazonaws.com
+BASE=tomplex
+IMAGE_NAME=python-postgres
+TAG=3.5
 
-IMG=$ECR/$REPOSITORY:$BUILD_ID
-IMG_LATEST=$ECR/$REPOSITORY:latest
-
-$(aws ecr get-login --no-include-email --region us-east-2)
+IMG=$BASE/$IMAGE_NAME:$TAG
 
 docker build -t $IMG -t $IMG_LATEST .
 docker push $IMG
-docker push $IMG_LATEST
